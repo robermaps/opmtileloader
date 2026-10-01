@@ -1,11 +1,11 @@
 #/***************************************************************************
 # OPTileLoader
 #
-# Load Mars and The Moon basemaps
+# Load Mars, Mercury and The Moon basemaps and datasets
 #							 -------------------
-#		begin				: 2021-12-29
+#		begin				: 2026-10-01
 #		git sha				: $Format:%H$
-#		copyright			: (C) 2021 by Robermaps
+#		copyright			: (C) 2026 by Robermaps
 #		email				: robermaps@outlook.es
 # ***************************************************************************/
 #

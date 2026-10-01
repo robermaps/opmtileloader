@@ -9,8 +9,8 @@
 """
 
 __author__ = 'robermaps@outlook.es'
-__date__ = '2021-12-29'
-__copyright__ = 'Copyright 2021, Robermaps'
+__date__ = '2026-10-01'
+__copyright__ = 'Copyright 2026, Robermaps'
 
 import os
 import unittest
