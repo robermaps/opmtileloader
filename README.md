@@ -2,9 +2,9 @@
 
 <img src="https://robermaps.github.io/img/mars-moon.jpg" width=60% height=60% >
 
-A plugin to easily load basemaps of Mars and The Moon directly to your QGIS project. 
+A plugin to easily load basemaps of Mars, Mercury and The Moon directly to your QGIS project. 
 
-Data is provided by <a href="https://www.openplanetary.org/">OpenPlanetary</a>
+Data is provided by <a href="https://openplanetarymap.org/basemaps/">OpenPlanetaryMap</a>
 
 📥 You can download the plugin directly inside QGIS or <a href="https://plugins.qgis.org/plugins/optileloader/">from the official QGIS Python Plugins Repository</a> 
 

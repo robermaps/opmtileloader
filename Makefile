@@ -38,13 +38,13 @@ LOCALES =
 # translation
 SOURCES = \
 	__init__.py \
-	optileloader.py optileloader_dialog.py
+	optileloader.py optileloader_dialog.py basemaps.py
 
 PLUGINNAME = optileloader
 
 PY_FILES = \
 	__init__.py \
-	optileloader.py optileloader_dialog.py
+	optileloader.py optileloader_dialog.py basemaps.py
 
 UI_FILES = optileloader_dialog_base.ui
 

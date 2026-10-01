@@ -28,6 +28,7 @@ from qgis.utils import iface
 
 # Import the code for the dialog
 from .optileloader_dialog import OPTileLoaderDialog
+from .basemaps import BASEMAPS, info_url
 import os.path
 
 
@@ -180,36 +181,13 @@ class OPTileLoader:
 
     # This function sets QgsRasterLayer parameters based on which button was pressed #
     def loadtile(self, button):
-        if button == self.dlg.basemap:
-            uri = 'https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/%7Bz%7D/%7Bx%7D/%7By%7D.png'
-            name = 'OPM Mars Basemap v0.2'
-        elif button == self.dlg.colourmola:
-                uri = 'http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola_color-noshade_global/%7Bz%7D/%7Bx%7D/%7B-y%7D.png'
-                name = 'Mars Colour MOLA elevation'
-        elif button ==  self.dlg.graymola:
-                uri = 'http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-gray/%7Bz%7D/%7Bx%7D/%7B-y%7D.png'
-                name = 'Mars Shaded Grayscale MOLA Elevation'
-        elif button == self.dlg.hillshade:
-                uri = 'https://s3.us-east-2.amazonaws.com/opmmarstiles/hillshade-tiles/%7Bz%7D/%7Bx%7D/%7B-y%7D.png'
-                name = 'Mars Hillshade'
-        elif button == self.dlg.shadedmola:
-                uri = 'http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/%7Bz%7D/%7Bx%7D/%7B-y%7D.png'
-                name = 'Mars Shaded Colour MOLA Elevation'
-        elif button == self.dlg.surfacetexture:
-                uri = 'http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/%7Bz%7D/%7Bx%7D/%7B-y%7D.png'
-                name = 'Mars Shaded Surface Texture'
-        elif button == self.dlg.viking:
-                uri = 'http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/viking_mdim21_global/%7Bz%7D/%7Bx%7D/%7B-y%7D.png'
-                name = 'Mars VIKING MDIM 2.1'
-        elif button == self.dlg.moonbase:
-                uri = 'https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-moon-basemap-v0-1/all/%7Bz%7D/%7Bx%7D/%7By%7D.png'
-                name = 'OPM Moon Basemap v0.1'
-        elif button == self.dlg.moonhillsh:
-            uri = 'https://s3.amazonaws.com/opmbuilder/301_moon/tiles/w/hillshaded-albedo/%7Bz%7D/%7Bx%7D/%7B-y%7D.png'
-            name = 'Moon Hillshaded Albedo'
-        else:
+        basemap = BASEMAPS.get(button.objectName())
+        if basemap is None:
             iface.messageBar().pushMessage("ERROR", "Something went wrong", level=Qgis.MessageLevel.Critical)
-        
+            return
+        uri = basemap['url']
+        name = basemap['name']
+
         # Load XYZ tile #
         rasterLyr = QgsRasterLayer("type=xyz&url=" + uri, name, "wms")
         QgsProject.instance().addMapLayer(rasterLyr)
@@ -225,16 +203,14 @@ class OPTileLoader:
             self.first_start = False
             self.dlg = OPTileLoaderDialog()
 
-            # Connect buttons with the loadtile function
-            self.dlg.basemap.clicked.connect(lambda: self.loadtile(self.dlg.basemap))
-            self.dlg.colourmola.clicked.connect(lambda: self.loadtile(self.dlg.colourmola))
-            self.dlg.graymola.clicked.connect(lambda: self.loadtile(self.dlg.graymola))
-            self.dlg.hillshade.clicked.connect(lambda: self.loadtile(self.dlg.hillshade))
-            self.dlg.shadedmola.clicked.connect(lambda: self.loadtile(self.dlg.shadedmola))
-            self.dlg.surfacetexture.clicked.connect(lambda: self.loadtile(self.dlg.surfacetexture))
-            self.dlg.viking.clicked.connect(lambda: self.loadtile(self.dlg.viking))
-            self.dlg.moonbase.clicked.connect(lambda: self.loadtile(self.dlg.moonbase))
-            self.dlg.moonhillsh.clicked.connect(lambda: self.loadtile(self.dlg.moonhillsh))
+            # Connect buttons with the loadtile function and add the info link as tooltip
+            for key, basemap in BASEMAPS.items():
+                button = getattr(self.dlg, key)
+                button.clicked.connect(lambda checked=False, b=button: self.loadtile(b))
+                tip = info_url(key)
+                if basemap.get('draft'):
+                    tip = self.tr(u'Draft / preliminary basemap') + '\n' + tip
+                button.setToolTip(tip)
 
         # show the dialog
         self.dlg.show()
