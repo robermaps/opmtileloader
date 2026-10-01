@@ -4,28 +4,28 @@
 
 [general]
 name=OpenPlanetary Tile Loader
-qgisMinimumVersion=3.0
-description=Load Mars and The Moon basemaps
-version=0.1
+qgisMinimumVersion=4.0
+description=Load Mars, Mercury and The Moon basemaps from OpenPlanetaryMap
+version=1.0.0
 author=Rober J
 email=roberer_@outlook.es
 
-about=This plugin provides easy access to basemaps of Mars and The Moon provided by OpenPlanetary.
+about=This plugin provides easy access to the basemaps of Mars, Mercury (draft) and The Moon provided by OpenPlanetaryMap (https://openplanetarymap.org/basemaps/). Requires QGIS 4 (Qt6). Not an official OpenPlanetaryMap tool.
 
-tracker=https://github.com/roberer/optileloader/issues
-repository=https://github.com/roberer/optileloader
+tracker=https://github.com/robermaps/optileloader/issues
+repository=https://github.com/robermaps/optileloader
 # End of mandatory metadata
 
 # Recommended items:
 
 hasProcessingProvider=no
-# Uncomment the following line and add your changelog:
-# changelog=
+changelog=1.0.0 - Migrated to QGIS 4 (Qt6); QGIS 3 is no longer supported. Added OPM Mercury Basemap v0.1 (DRAFT). Basemap names and links aligned with openplanetarymap.org.
+    0.1 - Initial release (QGIS 3).
 
 # Tags are comma separated with spaces allowed
-tags=python, mars, the moon, tiles, basemaps, openplanetary
+tags=python, mars, mercury, the moon, tiles, basemaps, openplanetary, openplanetarymap
 
-homepage=https://github.com/roberer/optileloader
+homepage=https://github.com/robermaps/optileloader
 category=Plugins
 icon=icon.png
 # experimental flag
@@ -38,9 +38,6 @@ deprecated=False
 # (or upgraded) can be specified.
 # Check the documentation for more information.
 # plugin_dependencies=
-
-Category of the plugin: Raster, Vector, Database or Web
-# category=Web
 
 # If the plugin can run on QGIS Server.
 server=False

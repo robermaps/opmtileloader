@@ -11,7 +11,7 @@ What's Next:
   * Copy the entire directory containing your new plugin to the QGIS plugin
     directory
 
-  * Compile the resources file using pyrcc5
+  * (obsoleto) este plugin ya no usa resources.py ni pyrcc5
 
   * Run the tests (``make test``)
 

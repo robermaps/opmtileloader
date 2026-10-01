@@ -15,6 +15,7 @@ Just press a button and the tile will be loaded to your QGIS project
 ## Notes
 * <b>Data is projected in Web Mercator (EPSG:3857)</b>
 * This is not an official tool from OpenPlanetary
-* Created with QGIS 3.18.3 and Qt 5.11.2
+* Requires QGIS 4.0 or later (Qt6). Created with QGIS 3.18.3 and migrated to QGIS 4
+* OPM Mercury Basemap v0.1 is a draft / preliminary map
 * Thanks to <a href="https://plugins.qgis.org/plugins/pluginbuilder3/">Plugin Builder 3</a> and <a href="https://plugins.qgis.org/plugins/plugin_reloader/">Plugin reloader</a>
 
