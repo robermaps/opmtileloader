@@ -60,7 +60,7 @@ ls -l ~/Library/Application\ Support/QGIS/QGIS4/profiles/default/python/plugins/
 Smoke test (offscreen, `qgis.testing.start_app()`): `classFactory`, `initGui()`/`unload()`, diálogo con los 10 botones, `run()` + clic en botones, y los 10 `QgsRasterLayer.isValid()` → todo OK en QGIS 4.2.3.
 
 ### Comprobaciones manuales en QGIS 4
-1. Plugins → Administrar → activar «OpenPlanetary Tile Loader» (sin errores en el log).
+1. Plugins → Administrar → activar «OpenPlanetaryMap Tile Loader» (sin errores en el log).
 2. Abrir el diálogo: secciones Luna, Mercury, Marte; tooltips con enlace a la ficha (Mercurio con aviso de borrador).
 3. Cargar visualmente, en este orden: **Mercury Basemap v0.1 (DRAFT)**, Moon Basemap, Moon Hillshaded Albedo, Mars Basemap v0.2, Mars Colour MOLA, Shaded Grayscale MOLA, Hillshade, Shaded Colour MOLA, Shaded Surface Texture, Viking MDIM2.1. Comprobar que el norte queda arriba en los mapas `{-y}`.
 4. Pulsar los dos enlaces del pie del diálogo.

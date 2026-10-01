@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>OpenPlanetary Tile Loader</string>
+   <string>OpenPlanetaryMap Tile Loader</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

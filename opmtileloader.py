@@ -63,7 +63,7 @@ class OPMTileLoader:
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr(u'&OpenPlanetary Tile Loader')
+        self.menu = self.tr(u'&OpenPlanetaryMap Tile Loader')
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
@@ -165,7 +165,7 @@ class OPMTileLoader:
         icon_path = os.path.join(self.plugin_dir, 'icon.png')
         self.add_action(
             icon_path,
-            text=self.tr(u'OpenPlanetary Tile Loader'),
+            text=self.tr(u'OpenPlanetaryMap Tile Loader'),
             callback=self.run,
             parent=self.iface.mainWindow())
 
@@ -177,7 +177,7 @@ class OPMTileLoader:
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
             self.iface.removePluginMenu(
-                self.tr(u'&OpenPlanetary Tile Loader'),
+                self.tr(u'&OpenPlanetaryMap Tile Loader'),
                 action)
             self.iface.removeToolBarIcon(action)
 
