@@ -6,27 +6,28 @@
 name=OpenPlanetary Tile Loader
 qgisMinimumVersion=4.0
 description=Load Mars, Mercury and The Moon basemaps and vector datasets from OpenPlanetaryMap
-version=1.1.0
+version=1.2.0
 author=Rober J
 email=roberer_@outlook.es
 
 about=This plugin provides easy access to the basemaps of Mars, Mercury (draft) and The Moon and, in a separate tab, its vector datasets (nomenclature, topographic contours, albedo, landing sites), all provided by OpenPlanetaryMap (https://openplanetarymap.org/). Requires QGIS 4 (Qt6). Not an official OpenPlanetaryMap tool.
 
-tracker=https://github.com/robermaps/optileloader/issues
-repository=https://github.com/robermaps/optileloader
+tracker=https://github.com/robermaps/opmtileloader/issues
+repository=https://github.com/robermaps/opmtileloader
 # End of mandatory metadata
 
 # Recommended items:
 
 hasProcessingProvider=no
-changelog=1.1.0 - New Datasets tab: add OpenPlanetaryMap vector datasets (Mars and Moon) to QGIS, whole or limited to the current map extent.
+changelog=1.2.0 - Basemaps tab now uses the same tree layout as Datasets; single About link; new moon icon; repository moved to robermaps/opmtileloader.
+    1.1.0 - New Datasets tab: add OpenPlanetaryMap vector datasets (Mars and Moon) to QGIS, whole or limited to the current map extent.
     1.0.0 - Migrated to QGIS 4 (Qt6); QGIS 3 is no longer supported. Added OPM Mercury Basemap v0.1 (DRAFT). Basemap names and links aligned with openplanetarymap.org.
     0.1 - Initial release (QGIS 3).
 
 # Tags are comma separated with spaces allowed
 tags=python, mars, mercury, the moon, tiles, basemaps, openplanetary, openplanetarymap, datasets, vector
 
-homepage=https://github.com/robermaps/optileloader
+homepage=https://github.com/robermaps/opmtileloader
 category=Plugins
 icon=icon.png
 # experimental flag

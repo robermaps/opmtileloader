@@ -6,252 +6,42 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>589</width>
-    <height>545</height>
+    <width>480</width>
+    <height>560</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>OpenPlanetary Tile Loader</string>
   </property>
-  <widget class="QTabWidget" name="tabs">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>589</width>
-     <height>545</height>
-    </rect>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <widget class="QWidget" name="tabBasemaps">
-    <attribute name="title">
-     <string>Basemaps</string>
-    </attribute>
-      <widget class="QLabel" name="MERCURY">
-       <property name="geometry">
-        <rect>
-         <x>250</x>
-         <y>120</y>
-         <width>121</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Mercury</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="mercurybase">
-       <property name="geometry">
-        <rect>
-         <x>174</x>
-         <y>180</y>
-         <width>241</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>OPM Mercury Basemap v0.1 (DRAFT)</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="MARS">
-       <property name="geometry">
-        <rect>
-         <x>270</x>
-         <y>230</y>
-         <width>121</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Mars</string>
-       </property>
-      </widget>
-       <widget class="QLabel" name="MOON">
-        <property name="geometry">
-         <rect>
-          <x>240</x>
-          <y>10</y>
-          <width>121</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>The Moon</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="basemap">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>290</y>
-          <width>241</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>OPM Mars Basemap v0.2</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="viking">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>330</y>
-          <width>241</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Mars Viking MDIM2.1</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="shadedmola">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>410</y>
-          <width>241</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Mars Shaded Colour MOLA Elevation</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="surfacetexture">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>290</y>
-          <width>241</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Mars Shaded Surface Texture</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="colourmola">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>370</y>
-          <width>241</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Mars Colour MOLA Elevation</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="hillshade">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>330</y>
-          <width>241</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Mars Hillshade</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="graymola">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>370</y>
-          <width>241</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Mars Shaded Grayscale MOLA Elevation</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="moonbase">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>70</y>
-          <width>241</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>OPM Moon Basemap v0.1</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="moonhillsh">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>70</y>
-          <width>241</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Moon Hillshaded Albedo</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label">
-        <property name="geometry">
-         <rect>
-          <x>390</x>
-          <y>470</y>
-          <width>161</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://openplanetarymap.org/basemaps/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Provided by OpenPlanetary&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="openExternalLinks">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_2">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>470</y>
-          <width>161</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/robermaps/optileloader&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;About&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="openExternalLinks">
-         <bool>true</bool>
-        </property>
-       </widget>
-   </widget>
-   <widget class="QWidget" name="tabDatasets">
-    <attribute name="title">
-     <string>Datasets</string>
-    </attribute>
-   </widget>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabs">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabBasemaps">
+      <attribute name="title">
+       <string>Basemaps</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tabDatasets">
+      <attribute name="title">
+       <string>Datasets</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="about">
+     <property name="text">
+      <string>&lt;a href=&quot;https://github.com/robermaps/opmtileloader&quot;&gt;About&lt;/a&gt;</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

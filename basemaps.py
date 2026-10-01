@@ -1,12 +1,13 @@
 """OpenPlanetaryMap basemap definitions (single source of truth).
 
 Catalogue: https://openplanetarymap.org/basemaps/
-Keys are the objectName of the matching button in optileloader_dialog_base.ui.
 Tile URLs keep the placeholders URL-encoded ({z}=%7Bz%7D, {-y}=%7B-y%7D) as
 required by the QGIS XYZ provider; {-y} marks TMS (flipped y) tile sets.
 """
 
 BASE_URL = 'https://openplanetarymap.org/basemaps/'
+
+BODIES = [('mars', 'Mars'), ('mercury', 'Mercury'), ('moon', 'The Moon')]
 
 _CARTO = 'https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/'
 _WOM = 'http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/'

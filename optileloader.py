@@ -30,7 +30,7 @@ from qgis.utils import iface
 
 # Import the code for the dialog
 from .optileloader_dialog import OPTileLoaderDialog
-from .basemaps import BASEMAPS, info_url
+from .basemaps import BASEMAPS
 from . import datasets
 import os.path
 
@@ -183,8 +183,8 @@ class OPTileLoader:
             self.iface.removeToolBarIcon(action)
 
     # This function sets QgsRasterLayer parameters based on which button was pressed #
-    def loadtile(self, button):
-        basemap = BASEMAPS.get(button.objectName())
+    def loadtile(self, key):
+        basemap = BASEMAPS.get(key)
         if basemap is None:
             iface.messageBar().pushMessage("ERROR", "Something went wrong", level=Qgis.MessageLevel.Critical)
             return
@@ -267,15 +267,7 @@ class OPTileLoader:
             self.first_start = False
             self.dlg = OPTileLoaderDialog()
 
-            # Connect buttons with the loadtile function and add the info link as tooltip
-            for key, basemap in BASEMAPS.items():
-                button = getattr(self.dlg, key)
-                button.clicked.connect(lambda checked=False, b=button: self.loadtile(b))
-                tip = info_url(key)
-                if basemap.get('draft'):
-                    tip = self.tr(u'Draft / preliminary basemap') + '\n' + tip
-                button.setToolTip(tip)
-
+            self.dlg.addBasemap.clicked.connect(lambda: self.loadtile(self.dlg.selected_basemap()))
             self.dlg.addDataset.clicked.connect(lambda: self.loaddataset(self.dlg.selected_dataset()))
 
         # show the dialog

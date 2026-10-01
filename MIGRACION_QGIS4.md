@@ -8,7 +8,8 @@ Plugin `optileloader` v1.0.0. Rama `migracion-qgis4-opm`. Entorno de pruebas: QG
 - URLs y nombres centralizados en `basemaps.py` (dict `BASEMAPS`), sustituyendo el `if/elif` de `loadtile()`.
 - Mercurio: nueva sección «Mercury» en el diálogo (el diálogo es vertical: Luna / Mercury / Marte), con «(DRAFT)» en el nombre y aviso en el tooltip.
 - No se descargan miniaturas de OPM (la web no declara licencia ni atribución; ver pendientes). No hay iconos por mapa en el plugin, así que no se creó icono para Mercurio.
-- Los dos enlaces del pie del diálogo: «Provided by OpenPlanetary» → `https://openplanetarymap.org/basemaps/`; «About» (`roberer.github.io`, 404) → `https://github.com/robermaps/optileloader`. **Revísalo si tienes otra página para «About».**
+- Pie del diálogo: un único enlace «About» → `https://github.com/robermaps/opmtileloader` (nuevo repositorio). Se eliminaron los enlaces «Provided by OpenPlanetary».
+- v1.2.0: la pestaña Basemaps usa el mismo árbol por cuerpo (Mars/Mercury/The Moon) + «Add to QGIS» que Datasets; icono nuevo (luna con cráteres, diseño propio, sin material de terceros).
 
 ## Cambios automáticos (`pyqt5_to_pyqt6.py --qgis3-incompatible-changes`, commit `7621ed0`)
 8 cambios en 3 ficheros: 2 enums QGIS (`Qgis.MessageLevel.*`), 4 enums Qt con ámbito, 1 `exec_()`→`exec()`, 1 `PyQt5`→`qgis.PyQt` (en `resources.py`, luego borrado). Requiere `tokenize-rt` (se instaló con `pip --target` en un directorio temporal).
