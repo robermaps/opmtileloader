@@ -82,7 +82,7 @@ def info_url(key):
 def _where(bbox):
     if bbox is None:
         return ''
-    return ' where the_geom && ST_MakeEnvelope({},{},{},{},4326)'.format(*bbox)
+    return ' where the_geom && ST_MakeEnvelope({},{},{},{},4326)'.format(*(float(v) for v in bbox))
 
 
 def _request(sql, fmt=None):
@@ -98,14 +98,16 @@ def _request(sql, fmt=None):
 
 def _columns(table):
     """Columns to export. the_geom_webmercator duplicates the geometry and makes rows too large for the server."""
-    fields = _request('select * from {} limit 0'.format(table))['fields']
-    return ','.join('"{}"'.format(c) for c in fields if c != 'the_geom_webmercator')
+    # table comes from the DATASETS constants, never from user input
+    fields = _request('select * from {} limit 0'.format(table))['fields']  # nosec B608
+    return ','.join('"{}"'.format(c.replace('"', '""')) for c in fields if c != 'the_geom_webmercator')
 
 
 def count_rows(key, bbox=None):
     """Number of rows of the dataset, optionally inside bbox (xmin, ymin, xmax, ymax, EPSG:4326)."""
     table = DATASETS[key]['table']
-    return int(_request('select count(*) n from {}{}'.format(table, _where(bbox)))['rows'][0]['n'])
+    sql = 'select count(*) n from {}{}'.format(table, _where(bbox))  # nosec B608 (constant table, float bbox)
+    return int(_request(sql)['rows'][0]['n'])
 
 
 def download(key, bbox=None, total=None, progress=None):
@@ -123,7 +125,8 @@ def download(key, bbox=None, total=None, progress=None):
         out.write('{"type":"FeatureCollection","features":[')
         first = True
         while done < total:
-            sql = 'select {} from {}{} order by cartodb_id limit {} offset {}'.format(
+            # constant table, quoted server column names, float bbox, int paging
+            sql = 'select {} from {}{} order by cartodb_id limit {} offset {}'.format(  # nosec B608
                 columns, table, _where(bbox), PAGE_SIZE, done)
             features = _request(sql, 'geojson')['features']
             if not features:
