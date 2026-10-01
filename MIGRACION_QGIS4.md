@@ -1,15 +1,15 @@
 # Migración a QGIS 4 (Qt6) y actualización a OpenPlanetaryMap
 
-Plugin `optileloader` v1.0.0. Rama `migracion-qgis4-opm`. Entorno de pruebas: QGIS 4.2.3 (macOS, Apple Silicon), Python 3.12.11, PyQt6 6.11.0 / Qt 6.11.1. Fecha de verificación: 2026-10-01.
+Plugin `optileloader` v1.0. Rama `migracion-qgis4-opm`. Entorno de pruebas: QGIS 4.2.3 (macOS, Apple Silicon), Python 3.12.11, PyQt6 6.11.0 / Qt 6.11.1. Fecha de verificación: 2026-10-01.
 
 ## Decisiones
-- Solo QGIS >= 4.0 (`qgisMinimumVersion=4.0`, sin `qgisMaximumVersion`, sin `supportsQt6`). Versión 0.1 → **1.0.0**.
+- Solo QGIS >= 4.0 (`qgisMinimumVersion=4.0`, sin `qgisMaximumVersion`, sin `supportsQt6`). Versión 0.1 → **1.0** (sin changelog en metadata.txt).
 - Se borran `resources.qrc` y `resources.py` (pyrcc5); el icono se carga por ruta relativa a `__file__`.
 - URLs y nombres centralizados en `basemaps.py` (dict `BASEMAPS`), sustituyendo el `if/elif` de `loadtile()`.
 - Mercurio: nueva sección «Mercury» en el diálogo (el diálogo es vertical: Luna / Mercury / Marte), con «(DRAFT)» en el nombre y aviso en el tooltip.
 - No se descargan miniaturas de OPM (la web no declara licencia ni atribución; ver pendientes). No hay iconos por mapa en el plugin, así que no se creó icono para Mercurio.
 - Pie del diálogo: un único enlace «About» → `https://github.com/robermaps/opmtileloader` (nuevo repositorio). Se eliminaron los enlaces «Provided by OpenPlanetary».
-- v1.2.0: la pestaña Basemaps usa el mismo árbol por cuerpo (Mars/Mercury/The Moon) + «Add to QGIS» que Datasets; icono nuevo (luna con cráteres, diseño propio, sin material de terceros).
+- la pestaña Basemaps usa el mismo árbol por cuerpo (Mars/Mercury/The Moon) + «Add to QGIS» que Datasets; icono nuevo (luna con cráteres, diseño propio, sin material de terceros).
 
 ## Cambios automáticos (`pyqt5_to_pyqt6.py --qgis3-incompatible-changes`, commit `7621ed0`)
 8 cambios en 3 ficheros: 2 enums QGIS (`Qgis.MessageLevel.*`), 4 enums Qt con ámbito, 1 `exec_()`→`exec()`, 1 `PyQt5`→`qgis.PyQt` (en `resources.py`, luego borrado). Requiere `tokenize-rt` (se instaló con `pip --target` en un directorio temporal).
@@ -66,7 +66,7 @@ Smoke test (offscreen, `qgis.testing.start_app()`): `classFactory`, `initGui()`/
 4. Pulsar los dos enlaces del pie del diálogo.
 5. Desactivar el plugin: desaparece el icono y el menú.
 
-## Datasets (v1.1.0)
+## Datasets
 Nueva pestaña **Datasets** (el diálogo pasa a `QTabWidget`: Basemaps / Datasets) con los 8 datasets de https://openplanetarymap.org/datasets/ agrupados en Marte y Luna (`datasets.py`).
 - **Fuente:** API SQL de CARTO `https://opmbuilder.carto.com/api/v2/sql` (formato GeoJSON, EPSG:4326). Se descarga a un `.geojson` temporal y se carga con OGR; el usuario exporta la capa si quiere conservarla. Estilo por defecto de QGIS.
 - **Grandes:** si la tabla tiene más de 20 000 filas se pregunta «Current map extent» / «Whole dataset» / Cancelar. La extensión se transforma a EPSG:4326 y filtra con `the_geom && ST_MakeEnvelope(...)` (instantánea, no se actualiza al mover el mapa). Descarga paginada de 20 000 filas con barra de progreso cancelable.
