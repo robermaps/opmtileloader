@@ -19,7 +19,7 @@ from qgis.PyQt.QtGui import QIcon
 
 
 
-class OPTileLoaderDialogTest(unittest.TestCase):
+class OPMTileLoaderDialogTest(unittest.TestCase):
     """Test rerources work."""
 
     def setUp(self):
@@ -37,7 +37,7 @@ class OPTileLoaderDialogTest(unittest.TestCase):
         self.assertFalse(icon.isNull())
 
 if __name__ == "__main__":
-    suite = unittest.makeSuite(OPTileLoaderResourcesTest)
+    suite = unittest.makeSuite(OPMTileLoaderResourcesTest)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)
 

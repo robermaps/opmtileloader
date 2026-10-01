@@ -16,18 +16,18 @@ import unittest
 
 from qgis.PyQt.QtWidgets import QDialogButtonBox, QDialog
 
-from optileloader_dialog import OPTileLoaderDialog
+from opmtileloader_dialog import OPMTileLoaderDialog
 
 from utilities import get_qgis_app
 QGIS_APP = get_qgis_app()
 
 
-class OPTileLoaderDialogTest(unittest.TestCase):
+class OPMTileLoaderDialogTest(unittest.TestCase):
     """Test dialog works."""
 
     def setUp(self):
         """Runs before each test."""
-        self.dialog = OPTileLoaderDialog(None)
+        self.dialog = OPMTileLoaderDialog(None)
 
     def tearDown(self):
         """Runs after each test."""
@@ -49,7 +49,7 @@ class OPTileLoaderDialogTest(unittest.TestCase):
         self.assertEqual(result, QDialog.DialogCode.Rejected)
 
 if __name__ == "__main__":
-    suite = unittest.makeSuite(OPTileLoaderDialogTest)
+    suite = unittest.makeSuite(OPMTileLoaderDialogTest)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)
 

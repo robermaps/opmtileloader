@@ -1,5 +1,5 @@
 #/***************************************************************************
-# OPTileLoader
+# OPMTileLoader
 #
 # Load Mars, Mercury and The Moon basemaps and datasets
 #							 -------------------
@@ -38,15 +38,15 @@ LOCALES =
 # translation
 SOURCES = \
 	__init__.py \
-	optileloader.py optileloader_dialog.py basemaps.py datasets.py
+	opmtileloader.py opmtileloader_dialog.py basemaps.py datasets.py
 
-PLUGINNAME = optileloader
+PLUGINNAME = opmtileloader
 
 PY_FILES = \
 	__init__.py \
-	optileloader.py optileloader_dialog.py basemaps.py datasets.py
+	opmtileloader.py opmtileloader_dialog.py basemaps.py datasets.py
 
-UI_FILES = optileloader_dialog_base.ui
+UI_FILES = opmtileloader_dialog_base.ui
 
 EXTRAS = metadata.txt icon.png
 

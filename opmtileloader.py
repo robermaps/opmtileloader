@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- OPTileLoader
+ OPMTileLoader
                                  A QGIS plugin
  Load Mars, Mercury and The Moon basemaps and datasets
                               -------------------
@@ -28,13 +28,13 @@ from qgis.core import (Qgis, QgsCoordinateReferenceSystem, QgsCoordinateTransfor
 from qgis.utils import iface
 
 # Import the code for the dialog
-from .optileloader_dialog import OPTileLoaderDialog
+from .opmtileloader_dialog import OPMTileLoaderDialog
 from .basemaps import BASEMAPS
 from . import datasets
 import os.path
 
 
-class OPTileLoader:
+class OPMTileLoader:
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
@@ -54,7 +54,7 @@ class OPTileLoader:
         locale_path = os.path.join(
             self.plugin_dir,
             'i18n',
-            'OPTileLoader_{}.qm'.format(locale))
+            'OPMTileLoader_{}.qm'.format(locale))
 
         if os.path.exists(locale_path):
             self.translator = QTranslator()
@@ -82,7 +82,7 @@ class OPTileLoader:
         :rtype: QString
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('OPTileLoader', message)
+        return QCoreApplication.translate('OPMTileLoader', message)
 
 
     def add_action(
@@ -264,7 +264,7 @@ class OPTileLoader:
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
         if self.first_start == True:
             self.first_start = False
-            self.dlg = OPTileLoaderDialog()
+            self.dlg = OPMTileLoaderDialog()
 
             self.dlg.addBasemap.clicked.connect(lambda: self.loadtile(self.dlg.selected_basemap()))
             self.dlg.addDataset.clicked.connect(lambda: self.loaddataset(self.dlg.selected_dataset()))

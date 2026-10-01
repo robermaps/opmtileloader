@@ -6,7 +6,7 @@ A plugin to easily load basemaps of Mars, Mercury and The Moon directly to your 
 
 Data is provided by <a href="https://openplanetarymap.org/basemaps/">OpenPlanetaryMap</a>
 
-📥 You can download the plugin directly inside QGIS or <a href="https://plugins.qgis.org/plugins/optileloader/">from the official QGIS Python Plugins Repository</a> 
+📥 You can download the plugin directly inside QGIS or <a href="https://plugins.qgis.org/plugins/opmtileloader/">from the official QGIS Python Plugins Repository</a> 
 
 Just press a button and the tile will be loaded to your QGIS project
 

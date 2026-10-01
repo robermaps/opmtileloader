@@ -1,6 +1,6 @@
 # Migración a QGIS 4 (Qt6) y actualización a OpenPlanetaryMap
 
-Plugin `optileloader` v1.0. Rama `migracion-qgis4-opm`. Entorno de pruebas: QGIS 4.2.3 (macOS, Apple Silicon), Python 3.12.11, PyQt6 6.11.0 / Qt 6.11.1. Fecha de verificación: 2026-10-01.
+Plugin `opmtileloader` v1.0. Rama `migracion-qgis4-opm`. Entorno de pruebas: QGIS 4.2.3 (macOS, Apple Silicon), Python 3.12.11, PyQt6 6.11.0 / Qt 6.11.1. Fecha de verificación: 2026-10-01.
 
 ## Decisiones
 - Solo QGIS >= 4.0 (`qgisMinimumVersion=4.0`, sin `qgisMaximumVersion`, sin `supportsQt6`). Versión 0.1 → **1.0** (sin changelog en metadata.txt).
@@ -55,7 +55,7 @@ PY=/Applications/QGIS-final-4_2_3.app/Contents/MacOS/python
 $PY -m compileall -q .
 python3 scripts/check_tiles.py .    # una tesela z=0 y z=3 por mapa + ficha
 # plugin enlazado en el perfil QGIS4:
-ls -l ~/Library/Application\ Support/QGIS/QGIS4/profiles/default/python/plugins/optileloader
+ls -l ~/Library/Application\ Support/QGIS/QGIS4/profiles/default/python/plugins/opmtileloader
 ```
 Smoke test (offscreen, `qgis.testing.start_app()`): `classFactory`, `initGui()`/`unload()`, diálogo con los 10 botones, `run()` + clic en botones, y los 10 `QgsRasterLayer.isValid()` → todo OK en QGIS 4.2.3.
 

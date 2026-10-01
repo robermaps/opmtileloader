@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- OPTileLoaderDialog
+ OPMTileLoaderDialog
                                  A QGIS plugin
  Load Mars, Mercury and The Moon basemaps and datasets
                              -------------------
@@ -31,13 +31,13 @@ from . import basemaps, datasets
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'optileloader_dialog_base.ui'))
+    os.path.dirname(__file__), 'opmtileloader_dialog_base.ui'))
 
 
-class OPTileLoaderDialog(QtWidgets.QDialog, FORM_CLASS):
+class OPMTileLoaderDialog(QtWidgets.QDialog, FORM_CLASS):
     def __init__(self, parent=None):
         """Constructor."""
-        super(OPTileLoaderDialog, self).__init__(parent)
+        super(OPMTileLoaderDialog, self).__init__(parent)
         # Set up the user interface from Designer through FORM_CLASS.
         # After self.setupUi() you can access any designer object by doing
         # self.<objectname>, and you can use autoconnect slots - see

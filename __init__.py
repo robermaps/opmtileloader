@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- OPTileLoader
+ OPMTileLoader
                                  A QGIS plugin
  Load Mars, Mercury and The Moon basemaps and datasets
                              -------------------
@@ -25,11 +25,11 @@
 
 # noinspection PyPep8Naming
 def classFactory(iface):  # pylint: disable=invalid-name
-    """Load OPTileLoader class from file OPTileLoader.
+    """Load OPMTileLoader class from file OPMTileLoader.
 
     :param iface: A QGIS interface instance.
     :type iface: QgsInterface
     """
     #
-    from .optileloader import OPTileLoader
-    return OPTileLoader(iface)
+    from .opmtileloader import OPMTileLoader
+    return OPMTileLoader(iface)

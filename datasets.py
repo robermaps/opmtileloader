@@ -117,7 +117,7 @@ def download(key, bbox=None, total=None, progress=None):
     if total is None:
         total = count_rows(key, bbox)
     columns = _columns(table)
-    path = os.path.join(tempfile.mkdtemp(prefix='optileloader_'), table + '.geojson')
+    path = os.path.join(tempfile.mkdtemp(prefix='opmtileloader_'), table + '.geojson')
     done = 0
     with open(path, 'w', encoding='utf-8') as out:
         out.write('{"type":"FeatureCollection","features":[')
