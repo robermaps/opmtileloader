@@ -21,14 +21,17 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
+from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, Qt
+from qgis.PyQt.QtWidgets import QMessageBox, QProgressDialog
 from qgis.PyQt.QtGui import QAction, QIcon
-from qgis.core import Qgis, QgsRasterLayer, QgsProject
+from qgis.core import (Qgis, QgsCoordinateReferenceSystem, QgsCoordinateTransform,
+                       QgsProject, QgsRasterLayer, QgsVectorLayer)
 from qgis.utils import iface
 
 # Import the code for the dialog
 from .optileloader_dialog import OPTileLoaderDialog
 from .basemaps import BASEMAPS, info_url
+from . import datasets
 import os.path
 
 
@@ -194,6 +197,67 @@ class OPTileLoader:
         iface.messageBar().pushMessage("Loaded", name, level=Qgis.MessageLevel.Success, duration=3)
 
 
+    def canvas_bbox(self):
+        """Current map extent as (xmin, ymin, xmax, ymax) in EPSG:4326, clamped to valid lon/lat."""
+        canvas = self.iface.mapCanvas()
+        transform = QgsCoordinateTransform(canvas.mapSettings().destinationCrs(),
+                                           QgsCoordinateReferenceSystem('EPSG:4326'),
+                                           QgsProject.instance())
+        rect = transform.transformBoundingBox(canvas.extent())
+        return (max(rect.xMinimum(), -180), max(rect.yMinimum(), -90),
+                min(rect.xMaximum(), 180), min(rect.yMaximum(), 90))
+
+    # Download a dataset from OPM (CARTO) and add it as a vector layer #
+    def loaddataset(self, key):
+        dataset = datasets.DATASETS[key]
+        name = dataset['name']
+        bar = self.iface.messageBar()
+        bbox = None
+        suffix = ''
+        try:
+            total = datasets.count_rows(key)
+            if total > datasets.LARGE_ROWS:
+                box = QMessageBox(self.dlg)
+                box.setWindowTitle(name)
+                box.setText(self.tr(u'This dataset has {} features and may take a long time to download.').format(total))
+                extent_btn = box.addButton(self.tr(u'Current map extent'), QMessageBox.ButtonRole.AcceptRole)
+                whole_btn = box.addButton(self.tr(u'Whole dataset'), QMessageBox.ButtonRole.DestructiveRole)
+                box.addButton(QMessageBox.StandardButton.Cancel)
+                box.exec()
+                if box.clickedButton() == extent_btn:
+                    bbox = self.canvas_bbox()
+                    suffix = u' (extent)'
+                    total = datasets.count_rows(key, bbox)
+                elif box.clickedButton() != whole_btn:
+                    return
+            if total == 0:
+                bar.pushMessage(name, self.tr(u'No features found'), level=Qgis.MessageLevel.Warning, duration=5)
+                return
+
+            progress = QProgressDialog(self.tr(u'Downloading {}...').format(name), self.tr(u'Cancel'),
+                                       0, total, self.dlg)
+            progress.setWindowModality(Qt.WindowModality.WindowModal)
+            progress.setMinimumDuration(0)
+
+            def update(done, count):
+                progress.setValue(done)
+                QCoreApplication.processEvents()
+                return not progress.wasCanceled()
+
+            path = datasets.download(key, bbox, total, update)
+            progress.close()
+        except datasets.DatasetError as e:
+            if str(e) != 'cancelled':
+                bar.pushMessage("ERROR", str(e), level=Qgis.MessageLevel.Critical)
+            return
+
+        layer = QgsVectorLayer(path, name + suffix, 'ogr')
+        if not layer.isValid():
+            bar.pushMessage("ERROR", self.tr(u'Could not load {}').format(name), level=Qgis.MessageLevel.Critical)
+            return
+        QgsProject.instance().addMapLayer(layer)
+        bar.pushMessage("Loaded", name + suffix, level=Qgis.MessageLevel.Success, duration=3)
+
     def run(self):
         """Run method that performs all the real work"""
 
@@ -211,6 +275,8 @@ class OPTileLoader:
                 if basemap.get('draft'):
                     tip = self.tr(u'Draft / preliminary basemap') + '\n' + tip
                 button.setToolTip(tip)
+
+            self.dlg.addDataset.clicked.connect(lambda: self.loaddataset(self.dlg.selected_dataset()))
 
         # show the dialog
         self.dlg.show()

@@ -10,6 +10,8 @@ Data is provided by <a href="https://openplanetarymap.org/basemaps/">OpenPlaneta
 
 Just press a button and the tile will be loaded to your QGIS project
 
+The **Datasets** tab adds the OpenPlanetaryMap vector datasets (<a href="https://openplanetarymap.org/datasets/">list</a>): Mars and Moon nomenclature, topographic contours, Mars TES albedo and Luna/Apollo sites. Large datasets (contours, Moon nomenclature) can be loaded for the current map extent only. Datasets are downloaded as GeoJSON (EPSG:4326, planetary lon/lat) into a temporary folder: export the layer to keep it.
+
 🗺️ <a href="https://robermaps.github.io/maps/mars-moon-explorer">Explore all basemaps</a> before download.
 
 ## Notes

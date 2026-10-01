@@ -26,6 +26,9 @@ import os
 
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtCore import Qt
+
+from .datasets import BODIES, DATASETS, DATASETS_URL, info_url
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -42,3 +45,41 @@ class OPTileLoaderDialog(QtWidgets.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
+        self._setup_datasets_tab()
+
+    def _setup_datasets_tab(self):
+        """Fill the Datasets tab: a tree of datasets grouped by body and an add button."""
+        layout = QtWidgets.QVBoxLayout(self.tabDatasets)
+
+        self.datasetTree = QtWidgets.QTreeWidget()
+        self.datasetTree.setHeaderHidden(True)
+        for body, title in BODIES:
+            parent = QtWidgets.QTreeWidgetItem([self.tr(title)])
+            parent.setFlags(Qt.ItemFlag.ItemIsEnabled)
+            self.datasetTree.addTopLevelItem(parent)
+            for key, dataset in DATASETS.items():
+                if dataset['body'] != body:
+                    continue
+                item = QtWidgets.QTreeWidgetItem([dataset['name']])
+                item.setData(0, Qt.ItemDataRole.UserRole, key)
+                item.setToolTip(0, info_url(key))
+                parent.addChild(item)
+            parent.setExpanded(True)
+        layout.addWidget(self.datasetTree)
+
+        self.addDataset = QtWidgets.QPushButton(self.tr('Add to QGIS'))
+        self.addDataset.setEnabled(False)
+        layout.addWidget(self.addDataset)
+
+        link = QtWidgets.QLabel('<a href="{}">{}</a>'.format(DATASETS_URL, self.tr('Provided by OpenPlanetary')))
+        link.setOpenExternalLinks(True)
+        layout.addWidget(link)
+
+        self.datasetTree.itemSelectionChanged.connect(
+            lambda: self.addDataset.setEnabled(self.selected_dataset() is not None))
+        self.datasetTree.itemDoubleClicked.connect(lambda *args: self.addDataset.click())
+
+    def selected_dataset(self):
+        """Key of the selected dataset, or None if a body header or nothing is selected."""
+        items = self.datasetTree.selectedItems()
+        return items[0].data(0, Qt.ItemDataRole.UserRole) if items else None
