@@ -211,12 +211,12 @@ class OPTileLoader:
             uri = 'https://s3.amazonaws.com/opmbuilder/301_moon/tiles/w/hillshaded-albedo/%7Bz%7D/%7Bx%7D/%7B-y%7D.png'
             name = 'Moon Hillshaded Albedo'
         else:
-            iface.messageBar().pushMessage("ERROR", "Something went wrong", level=Qgis.Critical)
+            iface.messageBar().pushMessage("ERROR", "Something went wrong", level=Qgis.MessageLevel.Critical)
         
         # Load XYZ tile #
         rasterLyr = QgsRasterLayer("type=xyz&url=" + uri, name, "wms")
         QgsProject.instance().addMapLayer(rasterLyr)
-        iface.messageBar().pushMessage("Loaded", name, level=Qgis.Success, duration=3)
+        iface.messageBar().pushMessage("Loaded", name, level=Qgis.MessageLevel.Success, duration=3)
 
 
     def run(self):
@@ -242,7 +242,7 @@ class OPTileLoader:
         # show the dialog
         self.dlg.show()
         # Run the dialog event loop
-        result = self.dlg.exec_()
+        result = self.dlg.exec()
         # See if OK was pressed
         if result:
             # Do something useful here - delete the line containing pass and
