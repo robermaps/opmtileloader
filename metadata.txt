@@ -3,7 +3,7 @@
 # This file should be included when you package your plugin.# Mandatory items:
 
 [general]
-name=OpenPlanetaryMap Tile Loader
+name=OpenPlanetaryMap Tile & Data Loader
 qgisMinimumVersion=4.0
 description=Load Mars, Mercury and The Moon basemaps and vector datasets from OpenPlanetaryMap
 version=1.0
