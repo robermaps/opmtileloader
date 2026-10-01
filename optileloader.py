@@ -22,13 +22,10 @@
  ***************************************************************************/
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
-from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction
+from qgis.PyQt.QtGui import QAction, QIcon
 from qgis.core import Qgis, QgsRasterLayer, QgsProject
 from qgis.utils import iface
 
-# Initialize Qt resources from file resources.py
-from .resources import *
 # Import the code for the dialog
 from .optileloader_dialog import OPTileLoaderDialog
 import os.path
@@ -162,7 +159,7 @@ class OPTileLoader:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
-        icon_path = ':/plugins/optileloader/icon.png'
+        icon_path = os.path.join(self.plugin_dir, 'icon.png')
         self.add_action(
             icon_path,
             text=self.tr(u'OpenPlanetary Tile Loader'),

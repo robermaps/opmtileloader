@@ -12,6 +12,7 @@ __author__ = 'roberer_@outlook.es'
 __date__ = '2021-12-29'
 __copyright__ = 'Copyright 2021, Rober J'
 
+import os
 import unittest
 
 from qgis.PyQt.QtGui import QIcon
@@ -31,7 +32,7 @@ class OPTileLoaderDialogTest(unittest.TestCase):
 
     def test_icon_png(self):
         """Test we can click OK."""
-        path = ':/plugins/OPTileLoader/icon.png'
+        path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'icon.png')
         icon = QIcon(path)
         self.assertFalse(icon.isNull())
 

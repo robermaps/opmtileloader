@@ -32,7 +32,7 @@ LOCALES =
 # you have trouble compiling the translations, you may have to specify the full path to
 # lrelease
 #LRELEASE = lrelease
-#LRELEASE = lrelease-qt4
+#LRELEASE = lrelease-qt6  # Qt6: brew install qt (lrelease queda en $(brew --prefix qt)/share/qt/libexec)
 
 
 # translation

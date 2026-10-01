@@ -14,7 +14,7 @@ __copyright__ = 'Copyright 2021, Rober J'
 
 import unittest
 
-from qgis.PyQt.QtGui import QDialogButtonBox, QDialog
+from qgis.PyQt.QtWidgets import QDialogButtonBox, QDialog
 
 from optileloader_dialog import OPTileLoaderDialog
 
