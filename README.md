@@ -1,4 +1,4 @@
-# OpenPlanetary Tile Loader for QGIS
+# OpenPlanetaryMap Tile Loader for QGIS 4.x
 
 <img src="https://robermaps.github.io/img/mars-moon.jpg" width=60% height=60% >
 
