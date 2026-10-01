@@ -15,9 +15,9 @@ The **Datasets** tab adds the OpenPlanetaryMap vector datasets (<a href="https:/
 🗺️ <a href="https://robermaps.github.io/maps/mars-moon-explorer">Explore all basemaps</a> before download.
 
 ## Notes
-* <b>Data is projected in Web Mercator (EPSG:3857)</b>
+* <b>Basemaps are Web Mercator (EPSG:3857) tiles; datasets are loaded as GeoJSON in planetary lon/lat (labelled EPSG:4326)</b>
 * This is not an official tool from OpenPlanetary
-* Requires QGIS 4.0 or later (Qt6). Created with QGIS 3.18.3 and migrated to QGIS 4
+* Requires QGIS 4.0 or later (Qt6).
 * OPM Mercury Basemap v0.1 is a draft / preliminary map
 * Thanks to <a href="https://plugins.qgis.org/plugins/pluginbuilder3/">Plugin Builder 3</a> and <a href="https://plugins.qgis.org/plugins/plugin_reloader/">Plugin reloader</a>
 

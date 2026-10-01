@@ -8,7 +8,7 @@ qgisMinimumVersion=4.0
 description=Load Mars, Mercury and The Moon basemaps and vector datasets from OpenPlanetaryMap
 version=1.0
 author=Robermaps
-email=roberer_@outlook.es
+email=robermaps@outlook.es
 
 about=This plugin provides easy access to the basemaps of Mars, Mercury (draft) and The Moon and, in a separate tab, its vector datasets (nomenclature, topographic contours, albedo, landing sites), all provided by OpenPlanetaryMap (https://openplanetarymap.org/). Requires QGIS 4 (Qt6). Not an official OpenPlanetaryMap tool.
 

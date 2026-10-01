@@ -8,8 +8,8 @@
                               -------------------
         begin                : 2021-12-29
         git sha              : $Format:%H$
-        copyright            : (C) 2021 by Rober J
-        email                : roberer_@outlook.es
+        copyright            : (C) 2021 by Robermaps
+        email                : robermaps@outlook.es
  ***************************************************************************/
 
 /***************************************************************************
